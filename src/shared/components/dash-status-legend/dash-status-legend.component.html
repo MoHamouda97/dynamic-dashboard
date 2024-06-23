@@ -1,0 +1,8 @@
+<div class="flex align-items-center {{ statusConfig?.isSmall ? 'gap-1' : 'gap-2' }}">
+    <span
+      [style.background-color]="statusConfig?.data?.color"
+      class="h-1rem w-1rem inline-block border-circle"></span>
+    <span class="{{ statusConfig?.isSmall ? 'text-sm' : '' }}">
+      {{ statusConfig?.data?.label }}
+    </span>
+</div>

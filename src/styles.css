@@ -1,1 +1,45 @@
 /* You can add global styles to this file, and also import other style files */
+
+/* START DISPLAY */
+
+.flex {
+    display: flex;
+}
+
+.align-items-center {
+    align-items: center;
+}
+
+.gap-1 {
+    gap: 1rem;
+}
+
+.gap-2 {
+    gap: 2rem;
+}
+
+.inline-block {
+    display: inline-block;
+}
+
+/* END DISPLAY */
+
+/* START HEIGHT & WIDTH */
+
+.h-1rem {
+    height: 1rem;
+}
+
+.w-1rem {
+    width: 1rem;
+}
+
+/* END HEIGHT & WIDTH */
+
+/* START BORDER */
+
+.border-circle {
+    border-radius: 50%;
+}
+
+/* END BORDER */

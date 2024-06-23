@@ -1,0 +1,148 @@
+<div
+  class="gauge-container"
+  [ngStyle]="{
+    height: radius + 35 + 'px',
+    paddingBottom: radius * (1 / 16) + 'px',
+    width: '100%'
+  }">
+  <div
+    [ngStyle]="{
+      width: radius * 2 + 'px',
+      height: radius + 'px',
+      borderRadius: radius + 'px ' + radius + 'px 0 0',
+      background: 'white',
+      display: 'flex',
+      justifyContent: 'center',
+      alignItems: 'flex-end'
+    }">
+    <div
+      [ngStyle]="{
+        width: radius + 'px',
+        height: radius / 2 + 'px',
+        borderRadius: radius / 2 + 'px ' + radius / 2 + 'px 0 0',
+        background: '#EFF3F7',
+        zIndex: 1
+      }"></div>
+    <div
+      [ngStyle]="{
+        width: radius * 2 + 'px',
+        height: radius + 'px',
+        borderRadius: radius + 'px ' + radius + 'px 0 0',
+        background: gradient,
+        position: 'absolute'
+      }"></div>
+  </div>
+  <div
+    *ngIf="enhancedStatuses.length > 1"
+    class="gauge-container__upper-lines"
+    [ngStyle]="{
+      left: rtl ? 'unset' : -radius - 10 + 'px',
+      right: rtl ? -radius + 10 + 'px' : 'unset'
+    }">
+    <svg
+      *ngFor="let el of enhancedStatuses; trackBy: trackByFn"
+      [attr.height]="radius + 'px'"
+      [attr.width]="radius * 2 + 'px'"
+      class="gauge-container__arc-line">
+      <circle
+        [attr.cx]="el.radius"
+        [attr.cy]="el.radius"
+        [attr.stroke]="el.color"
+        [attr.r]="el.radius"
+        fill="transparent"
+        [attr.stroke-width]="6"
+        [attr.stroke-dasharray]="el.dashArray"
+        [attr.stroke-dashoffset]="el.offset"
+        [attr.transform]="el.transform" />
+    </svg>
+  </div>
+  <svg
+    [attr.height]="outerRadius + 10 + 'px'"
+    [attr.width]="(outerRadius + 10) * 2 + 'px'"
+    [ngStyle]="{
+      position: 'absolute',
+      bottom: 0,
+      zIndex: 3,
+      overflow: 'visible'
+    }">
+    <text
+      *ngFor="let el of enhancedStatuses; trackBy: trackByFn"
+      [attr.x]="el.radius"
+      [attr.y]="el.radius"
+      [attr.text-anchor]="rtl ? 'end' : 'start'"
+      [attr.dominant-baseline]="'hanging'"
+      [attr.transform]="'translate(' + el.textX + ' , ' + el.textY + ')'"
+      style="font-size: 12px">
+      {{ el.text }}%
+    </text>
+  </svg>
+  <div class="gauge-container__pointer">
+    <div class="gauge-icon-container">
+      <svg
+        class="pointer-indicator"
+        xmlns="http://www.w3.org/2000/svg"
+        xmlns:xlink="http://www.w3.org/1999/xlink"
+        width="170.834"
+        height="15.59"
+        viewBox="0 0 170.834 15.59"
+        [ngStyle]="{
+          transform: pointerTransform,
+          width: radius * (3 / 4) + 'px'
+        }">
+        <defs>
+          <radialGradient
+            id="radial-gradient"
+            cx="0.5"
+            cy="0.5"
+            r="0.763"
+            gradientTransform="translate(0 -6.364) scale(1 13.727)"
+            gradientUnits="objectBoundingBox">
+            <stop offset="0" stop-color="#9ea0a0" />
+            <stop offset="1" stop-color="#555559" />
+          </radialGradient>
+        </defs>
+        <path
+          id="Path_13995"
+          data-name="Path 13995"
+          d="M6.646,4.531,169.834,0V14.563L6.646,10.356C2.975,10.356,0,11.3,0,7.282S2.975,4.531,6.646,4.531Z"
+          transform="translate(0.5 0.514)"
+          stroke="#555559"
+          stroke-width="1"
+          fill="url(#radial-gradient)" />
+      </svg>
+      <svg
+        class="circle"
+        [ngStyle]="{
+          width: radius * (1 / 8) + 'px',
+          height: radius * (1 / 8) + 'px'
+        }"
+        xmlns="http://www.w3.org/2000/svg"
+        xmlns:xlink="http://www.w3.org/1999/xlink"
+        width="53"
+        height="52"
+        viewBox="0 0 53 52">
+        <defs>
+          <radialGradient
+            id="radial-gradient"
+            cx="0.5"
+            cy="0.5"
+            r="0.667"
+            gradientUnits="objectBoundingBox">
+            <stop offset="0" stop-color="#9ea0a0" />
+            <stop offset="1" stop-color="#555559" />
+          </radialGradient>
+        </defs>
+        <g
+          id="Ellipse_180"
+          data-name="Ellipse 180"
+          transform="translate(2 2)"
+          stroke="#555559"
+          stroke-width="2"
+          fill="url(#radial-gradient)">
+          <ellipse cx="24.5" cy="24" rx="24.5" ry="24" stroke="none" />
+          <ellipse cx="24.5" cy="24" rx="25.5" ry="25" fill="none" />
+        </g>
+      </svg>
+    </div>
+  </div>
+</div>

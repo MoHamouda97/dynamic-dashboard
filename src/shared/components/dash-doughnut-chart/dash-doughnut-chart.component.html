@@ -1,0 +1,51 @@
+<div class="flex flex-column h-full align-items-center gap-3">
+    <ng-container *ngIf="!loading">
+      <ng-container *ngIf="showHeader && title">
+        <div class="text-lg">
+          {{ title }}
+        </div>
+      </ng-container>
+      <ng-container *ngIf="!empty">
+        <div class="overflow-hidden w-full flex-1">
+          <div class="relative h-full flex justify-content-center align-items-center">
+            <canvas #chartEl></canvas>
+            <div
+              class="absolute flex flex-column gap-2 align-items-center text-center"
+              style="max-width: 50%">
+              <ng-container *ngIf="showTotal">
+                <ng-container *ngIf="action">
+                  <button
+                    (onClick)="openDialog()"
+                    styleClass="font-semibold text-5xl text-color">
+                    {{totalCount?.toString()}}
+                </button>
+                </ng-container>
+                <ng-container *ngIf="!action">
+                  <div class="font-semibold text-5xl">
+                    {{ totalCount }}
+                  </div>
+                </ng-container>
+              </ng-container>
+            </div>
+          </div>
+        </div>
+      </ng-container>
+      <ng-container *ngIf="empty">
+        <div class="flex flex-1 w-full justify-content-center align-items-center">
+          <span translate>no-data</span>
+        </div>
+      </ng-container>
+      <div class="flex flex-wrap justify-content-center gap-3">
+        <ng-container *ngFor="let legend of legends; trackBy: trackByFn">
+          <div class="flex align-items-center justify-content-between gap-3">
+            <!-- <db-status-legend [status]="legend"></db-status-legend> -->
+          </div>
+        </ng-container>
+      </div>
+    </ng-container>
+    <ng-container *ngIf="loading">
+      <div class="flex-1 flex justify-content-center align-items-center">
+
+      </div>
+    </ng-container>
+</div>

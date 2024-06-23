@@ -7,4 +7,11 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'dynamic-dashboard';
+
+  status: any[] = [
+    {label: 'Legend 1', color: 'red'},
+    {label: 'Legend 2', color: 'blue'},
+    {label: 'Legend 3', color: 'green'},
+  ]
+
 }

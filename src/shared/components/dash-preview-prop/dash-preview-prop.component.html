@@ -1,0 +1,130 @@
+<div>
+    <ng-container [ngSwitch]="prop?.viewType">
+      <!-- -----------------------User--------------------- -->
+      <ng-container *ngSwitchCase="'User'">
+        <app-user-avatar
+          [hideLabel]="hideLabel"
+          [user]="prop?.value?.display"
+          [label]="prop?.label"
+          [customClass]="customClass">
+        </app-user-avatar>
+      </ng-container>
+  
+      <!-- -----------------------Percentage--------------------- -->
+      <ng-container *ngSwitchCase="'Percentage'">
+        <div *ngIf="!hideLabel" class="mb-1 font-semibold">
+          {{ prop?.label }}
+        </div>
+        <div class="flex gap-2 align-items-center">
+          <div class="flex-1">
+            <p-progressBar
+              [value]="prop?.value?.value"
+              [showValue]="false"
+              [style]="{ height: '0.7rem' }">
+            </p-progressBar>
+          </div>
+          <div class="font-semibold" [ngStyle]="{ color }">
+            {{ prop?.value?.display || '_' }}
+          </div>
+        </div>
+      </ng-container>
+  
+      <!-- -----------------------Date--------------------- -->
+      <ng-container *ngSwitchCase="'Date'">
+        <div [class]="'flex gap-2 align-items-center ' + customClass">
+          <ng-container *ngIf="!hideLabel">
+            <i class="pi pi-calendar text-xl"></i>
+          </ng-container>
+          <div>
+            <ng-container *ngIf="!hideLabel">
+              <div class="font-semibold">{{ prop?.label }}</div>
+            </ng-container>
+            <div>{{ prop?.value?.display || '_' }}</div>
+          </div>
+        </div>
+      </ng-container>
+  
+      <!-- -----------------------Status--------------------- -->
+      <ng-container *ngSwitchCase="'Status'">
+        <div [class]="'flex gap-2 align-items-center ' + customClass">
+          <ng-container *ngIf="!hideLabel && icon">
+            <i [class]="'pi ' + icon + ' text-xl'"></i>
+          </ng-container>
+          <div>
+            <ng-container *ngIf="!hideLabel">
+              <div class="font-semibold">{{ prop?.label }}</div>
+            </ng-container>
+            <app-preview-status [status]="prop.value"></app-preview-status>
+          </div>
+        </div>
+      </ng-container>
+  
+      <!-- -----------------------Lookup--------------------- -->
+      <ng-container *ngSwitchCase="'Lookup'">
+        <div [class]="'flex gap-2 align-items-center ' + customClass">
+          <ng-container *ngIf="!hideLabel && icon">
+            <i [class]="'pi ' + icon + ' text-xl'"></i>
+          </ng-container>
+          <div>
+            <ng-container *ngIf="!hideLabel">
+              <div class="font-semibold">{{ prop?.label }}</div>
+            </ng-container>
+            <div>{{ prop?.value?.display?.name ?? '_' }}</div>
+          </div>
+        </div>
+      </ng-container>
+  
+      <!-- -----------------------LookupMultiSelect--------------------- -->
+      <ng-container *ngSwitchCase="'LookupMultiSelect'">
+        <div [class]="'flex gap-2 align-items-center ' + customClass">
+          <ng-container *ngIf="!hideLabel && icon">
+            <i [class]="'pi ' + icon + ' text-xl'"></i>
+          </ng-container>
+          <div>
+            <ng-container *ngIf="!hideLabel">
+              <div class="font-semibold">{{ prop?.label }}</div>
+            </ng-container>
+            <div>
+              <ng-container *ngIf="prop?.value?.display?.length; else noDisplay">
+                <ng-container *ngFor="let item of prop?.value?.display; let last = last">
+                  <span>{{ item.name }}{{ !last ? ',' : '' }}</span>
+                </ng-container>
+              </ng-container>
+              <ng-template #noDisplay>-</ng-template>
+            </div>
+          </div>
+        </div>
+      </ng-container>
+  
+      <!-- -----------------------Number--------------------- -->
+      <ng-container *ngSwitchCase="'Number'">
+        <div [class]="'flex gap-2 align-items-center ' + customClass">
+          <ng-container *ngIf="!hideLabel && icon">
+            <i [class]="'pi ' + icon + ' text-xl'"></i>
+          </ng-container>
+          <div>
+            <ng-container *ngIf="!hideLabel">
+              <div class="font-semibold">{{ prop?.label }}</div>
+            </ng-container>
+            <div>{{ prop?.value?.display || (prop?.value | checkNumber) }}</div>
+          </div>
+        </div>
+      </ng-container>
+  
+      <!-- -----------------------Default--------------------- -->
+      <ng-container *ngSwitchDefault>
+        <div [class]="'flex gap-2 align-items-center ' + customClass">
+          <ng-container *ngIf="!hideLabel && icon">
+            <i [class]="'pi ' + icon + ' text-xl'"></i>
+          </ng-container>
+          <div>
+            <ng-container *ngIf="!hideLabel">
+              <div class="font-semibold">{{ prop?.label }}</div>
+            </ng-container>
+            <div>{{ prop?.value?.display || prop?.value || '_' }}</div>
+          </div>
+        </div>
+      </ng-container>
+    </ng-container>
+</div>
+  
