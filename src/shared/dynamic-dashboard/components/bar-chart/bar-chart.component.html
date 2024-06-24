@@ -1,0 +1,11 @@
+<app-dash-bar-chart
+    [dbId]="dbId"
+    [data]="data"
+    [labels]="labels"
+    [action]="chartData?.action ? chartData : undefined"
+    [isPercentage]="!!chartData.isPercentage"
+    [hideTooltip]="!!chartData.hideTooltip"
+    [formatNumbers]="!!chartData.formatNumbers"
+    [componentFilters]="componentFilters"
+    [propertyFilters]="propertyFilters"
+    [loading]="loading"></app-dash-bar-chart>

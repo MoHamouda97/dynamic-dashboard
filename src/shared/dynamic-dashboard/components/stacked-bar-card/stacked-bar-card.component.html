@@ -1,0 +1,13 @@
+<app-dash-stacked-bar-chart
+    [dbId]="dbId"
+    [data]="data"
+    [title]="title"
+    [action]="chartData?.action ? chartData : undefined"
+    [isPercentage]="!!chartData.isPercentage"
+    [hideTooltip]="!!chartData.hideTooltip"
+    [formatNumbers]="!!chartData.formatNumbers"
+    [labels]="labels"
+    [xlabels]="xlabels"
+    [componentFilters]="componentFilters"
+    [propertyFilters]="propertyFilters"
+    [loading]="loading"></app-dash-stacked-bar-chart>

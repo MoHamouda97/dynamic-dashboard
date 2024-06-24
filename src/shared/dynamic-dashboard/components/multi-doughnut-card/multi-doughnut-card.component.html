@@ -1,0 +1,19 @@
+<div class="flex w-full overflow-x-auto">
+    <ng-container *ngFor="let chart of chartData; let index = index; let first = first">
+      <div
+        class="p-1 w-6 h-18rem"
+        [style.border-inline-start]="!first ? '1px solid var(--surface-100)' : ''">
+        <db-doughnut-chart
+          [dbId]="dbId"
+          [title]="getLocalized(chart.title)"
+          [data]="data[index]"
+          [action]="chartData[index]?.action ? chartData[index] : undefined"
+          [hideTooltip]="!!chartData[index]?.hideTooltip"
+          [loading]="loading"
+          [componentFilters]="componentFilters"
+          [propertyFilters]="propertyFilters"
+          showHeader>
+        </db-doughnut-chart>
+      </div>
+    </ng-container>
+</div>
