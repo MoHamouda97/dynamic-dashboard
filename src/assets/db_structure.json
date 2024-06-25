@@ -1,0 +1,466 @@
+{
+  "id": 0,
+  "name": {
+    "ar": "DB 1 AR",
+    "en": "DB 1"
+  },
+  "charts": [
+    {
+      "id": 1,
+      "type": "BarChart",
+      "size": "half",
+      "withTabs": true,
+      "title": {
+        "ar": "Performance",
+        "en": "Performance"
+      },
+      "chartData": [
+        {
+          "isPercentage": true,
+          "title": {
+            "ar": "KPIs Performance",
+            "en": "KPIs Performance"
+          },
+          "selection": {
+            "moduleType": "Component",
+            "componentSchemaId": 12
+          },
+          "query": {
+            "XAxisProperty": "Name",
+            "YAxisProperty": "performance_average_12_13",
+            "Function": "Avg",
+            "legendProperty": "Status",
+            "ExtraProperties": ["Status"]
+          }
+        },
+        {
+          "isPercentage": true,
+          "title": {
+            "ar": "Initiatives Performance",
+            "en": "Initiatives Performance"
+          },
+          "selection": {
+            "moduleType": "Component",
+            "componentSchemaId": 11
+          },
+          "query": {
+            "XAxisProperty": "Name",
+            "YAxisProperty": "performance_average_11_13",
+            "Function": "Avg",
+            "legendProperty": "Status",
+            "ExtraProperties": ["Status"]
+          }
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "type": "MultiDoughnutChart",
+      "size": "quarter",
+      "title": {
+        "ar": "Performance Status",
+        "en": "Performance Status"
+      },
+      "chartData": [
+        {
+          "title": {
+            "ar": "KPIs",
+            "en": "KPIs"
+          },
+          "selection": {
+            "moduleType": "Component",
+            "componentSchemaId": 13
+          },
+          "query": {
+            "PivotProperty": "Status",
+            "ExtraProperty": "Status"
+          },
+          "action": {
+            "type": "Table",
+            "propertyKey": "Status",
+            "properties": [
+              "Name",
+              "counts_13_14",
+              "champion_13",
+              "baseline_13",
+              "Baseline_Year_13",
+              "target_13",
+              "performance_13",
+              "Status"
+            ]
+          }
+        },
+        {
+          "title": {
+            "ar": "Initiatives",
+            "en": "Initiatives"
+          },
+          "selection": {
+            "moduleType": "Component",
+            "componentSchemaId": 14
+          },
+          "query": {
+            "PivotProperty": "Status",
+            "ExtraProperty": "Status"
+          },
+          "action": {
+            "type": "table",
+            "propertyKey": "Status",
+            "properties": [
+              "Name",
+              "counts_13_14",
+              "owner_14",
+              "startDate_14",
+              "finishDate_14",
+              "actionscounts_14",
+              "actualAverageActionsProgress_14",
+              "plannedAverageActionsProgress_14",
+              "performance_14",
+              "Status"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "type": "SplitterChart",
+      "size": "quarter",
+      "title": {
+        "ar": "KPI UpdateStatus",
+        "en": "KPI UpdateStatus"
+      },
+      "chartData": {
+        "selection": {
+          "moduleType": "Component",
+          "componentSchemaId": 13
+        },
+        "query": {
+          "PivotProperty": "UpdateStatus",
+          "PositiveValues": ["Updated"],
+          "NegativeValues": []
+        },
+        "action": {
+          "type": "table",
+          "propertyKey": "UpdateStatus",
+          "properties": [
+            "Name",
+            "counts_13_14",
+            "champion_13",
+            "baseline_13",
+            "Baseline_Year_13",
+            "target_13",
+            "performance_13",
+            "Status"
+          ]
+        }
+      }
+    },
+    {
+      "id": 4,
+      "type": "MultiDoughnutChart",
+      "size": "quarter",
+      "title": {
+        "ar": "Change Requests",
+        "en": "Change Requests"
+      },
+      "chartData": [
+        {
+          "title": {
+            "ar": "KPIs",
+            "en": "KPIs"
+          },
+          "selection": {
+            "moduleType": "Section",
+            "sectionSchemaId": 19
+          },
+          "query": {
+            "PivotProperty": "Status_19",
+            "ExtraProperty": "Status_19"
+          },
+          "action": {
+            "type": "table",
+            "propertyKey": "Status_19",
+            "properties": [
+              "Name",
+              "Request_description_and_justification_19",
+              "Concerned_Workstream_19",
+              "Changes_required_and_expected_impact_19",
+              "Approving_Entity_19",
+              "Expected_response_date_19",
+              "Submission_Date_19"
+            ]
+          }
+        },
+        {
+          "title": {
+            "ar": "Initiatives",
+            "en": "Initiatives"
+          },
+          "selection": {
+            "moduleType": "Section",
+            "sectionSchemaId": 13
+          },
+          "query": {
+            "PivotProperty": "Status_13",
+            "ExtraProperty": "Status_13"
+          },
+          "action": {
+            "type": "table",
+            "propertyKey": "Status_13",
+            "properties": [
+              "Name",
+              "Request_description_and_justification_13",
+              "Concerned_Workstream_13",
+              "Changes_required_and_expected_impact_13",
+              "Approving_Entity_13",
+              "Expected_response_date_13",
+              "Submission_Date_13"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": 5,
+      "type": "MultiDoughnutChart",
+      "size": "quarter",
+      "title": {
+        "ar": "Escalation",
+        "en": "Escalation"
+      },
+      "chartData": [
+        {
+          "title": {
+            "ar": "KPIs",
+            "en": "KPIs"
+          },
+          "selection": {
+            "moduleType": "Section",
+            "sectionSchemaId": 20
+          },
+          "query": {
+            "PivotProperty": "Impact_20",
+            "ExtraProperty": "Impact_20"
+          },
+          "action": {
+            "type": "table",
+            "propertyKey": "Impact_20",
+            "properties": [
+              "Name",
+              "Concerned_Workstream_20",
+              "Type_of_roadblock_20",
+              "KPI_Impacted_20",
+              "Level_of_impact_20",
+              "Submission_Date_20",
+              "Task_kick_off_Date_20",
+              "Response_expected_date_20"
+            ]
+          }
+        },
+        {
+          "title": {
+            "ar": "Initiatives",
+            "en": "Initiatives"
+          },
+          "selection": {
+            "moduleType": "Section",
+            "sectionSchemaId": 12
+          },
+          "query": {
+            "PivotProperty": "Impact_12",
+            "ExtraProperty": "Impact_12"
+          },
+          "action": {
+            "type": "table",
+            "propertyKey": "Impact_12",
+            "properties": [
+              "Name",
+              "Concerned_Workstream_20",
+              "Type_of_roadblock_20",
+              "KPI_Impacted_20",
+              "Level_of_impact_20",
+              "Submission_Date_20",
+              "Task_kick_off_Date_20",
+              "Response_expected_date_20"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": 6,
+      "type": "MultiDoughnutChart",
+      "size": "quarter",
+      "title": {
+        "ar": "Challenges",
+        "en": "Challenges"
+      },
+      "chartData": [
+        {
+          "title": {
+            "ar": "KPIs",
+            "en": "KPIs"
+          },
+          "selection": {
+            "moduleType": "Section",
+            "sectionSchemaId": 22
+          },
+          "query": {
+            "PivotProperty": "Status_22",
+            "ExtraProperty": "Status_22"
+          },
+          "action": {
+            "type": "table",
+            "propertyKey": "Status_22",
+            "properties": [
+              "Name_22",
+              "Challenge_22",
+              "Challenge_Description_22"
+            ]
+          }
+        },
+        {
+          "title": {
+            "ar": "Initiatives",
+            "en": "Initiatives"
+          },
+          "selection": {
+            "moduleType": "Section",
+            "sectionSchemaId": 33
+          },
+          "query": {
+            "PivotProperty": "Status_33",
+            "ExtraProperty": "Status_33"
+          },
+          "action": {
+            "type": "table",
+            "propertyKey": "Status_33",
+            "properties": ["Name", "Challenge_22", "Challenge_Description_22"]
+          }
+        }
+      ]
+    },
+    {
+      "id": 7,
+      "type": "StackedBarChart",
+      "size": "quarter",
+      "title": {
+        "ar": "Initiative Financial by type",
+        "en": "Initiative Financial by type"
+      },
+      "chartData": {
+        "selection": {
+          "moduleType": "Section",
+          "sectionSchemaId": 40
+        },
+        "query": {
+          "XAxisLookupProperty": "Type_40",
+          "StackLookupProperty": "Commitment_Status_40",
+          "StackNumberProperty": "USD_B_40",
+          "Function": "Sum"
+        },
+        "action": {
+          "type": "table",
+          "propertyKey": "Commitment_Status_40",
+          "properties": [
+            "Name",
+            "Type_40",
+            "USD_B_40",
+            "Funding_Source_40",
+            "Commitment_Status_40",
+            "Notes_40"
+          ]
+        }
+      }
+    },
+    {
+      "id": 8,
+      "type": "CarouselMultiDoughnutChart",
+      "withTabs": true,
+      "size": "full",
+      "title": {
+        "ar": "Challenges",
+        "en": "Challenges"
+      },
+      "chartData": [
+        {
+          "title": {
+            "ar": "Strategic",
+            "en": "Strategic"
+          },
+          "chartData": [
+            {
+              "title": {
+                "ar": "KPIs",
+                "en": "KPIs"
+              },
+              "selection": {
+                "moduleType": "Component",
+                "componentSchemaId": 13,
+                "parentComponentSchemaId": 12
+              },
+              "query": {
+                "PivotProperty": "Status",
+                "ExtraProperty": "Status"
+              }
+            },
+            {
+              "title": {
+                "ar": "Initiatives",
+                "en": "Initiatives"
+              },
+              "selection": {
+                "moduleType": "Component",
+                "componentSchemaId": 14,
+                "parentComponentSchemaId": 12
+              },
+              "query": {
+                "PivotProperty": "Status",
+                "ExtraProperty": "Status"
+              }
+            }
+          ]
+        },
+        {
+          "title": {
+            "ar": "Workstream",
+            "en": "Workstream"
+          },
+          "chartData": [
+            {
+              "title": {
+                "ar": "KPIs",
+                "en": "KPIs"
+              },
+              "selection": {
+                "moduleType": "Component",
+                "componentSchemaId": 13,
+                "parentComponentSchemaId": 11
+              },
+              "query": {
+                "PivotProperty": "Status",
+                "ExtraProperty": "Status"
+              }
+            },
+            {
+              "title": {
+                "ar": "Initiatives",
+                "en": "Initiatives"
+              },
+              "selection": {
+                "moduleType": "Component",
+                "componentSchemaId": 14,
+                "parentComponentSchemaId": 11
+              },
+              "query": {
+                "PivotProperty": "Status",
+                "ExtraProperty": "Status"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -12,6 +12,7 @@ import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { nFormatter, strToArray } from 'src/shared/utils';
 import * as Chart from 'chart.js';
 import { DashStatusLegendComponent } from '../dash-status-legend/dash-status-legend.component';
+import { CommonModule } from '@angular/common';
 
 
 const backgroundBar: any = {
@@ -77,6 +78,7 @@ const backgroundBar: any = {
   styleUrls: ['./dash-bar-chart.component.css'],
   standalone: true,
   imports: [
+    CommonModule,
     DashStatusLegendComponent
   ]
 })
@@ -116,7 +118,7 @@ export class DashBarChartComponent implements OnInit {
   }
 
   get containerWidth(): string {
-    const offsetWidth = this.containerEl.nativeElement.offsetWidth ?? 0;
+    const offsetWidth = this.containerEl?.nativeElement?.offsetWidth ?? 0;
     const childrenWith = 125 * this.chartData.labels.length;
     return childrenWith > offsetWidth + 10 ? `${childrenWith}px` : '100%';
   }

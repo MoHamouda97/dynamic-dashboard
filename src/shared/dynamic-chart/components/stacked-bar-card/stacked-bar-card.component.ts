@@ -1,4 +1,5 @@
-import { HttpClient } from "@angular/common/http";
+import { CommonModule } from "@angular/common";
+import { HttpClient, HttpClientModule } from "@angular/common/http";
 import { Component, Inject, Input, OnInit } from "@angular/core";
 import { BehaviorSubject, combineLatest } from "rxjs";
 import { finalize, map, switchMap, tap } from "rxjs/operators";
@@ -10,11 +11,13 @@ import { DashStackedBarChartComponent } from 'src/shared/components/dash-stacked
   styleUrls: ['./stacked-bar-card.component.css'],
   standalone: true,
   imports: [
+    CommonModule,
+    HttpClientModule,
     DashStackedBarChartComponent
   ],
   host: {
     class: "block",
-  },
+  }
 })
 export class StackedBarCardComponent implements OnInit {
   @Input() dbId!: number;
@@ -23,19 +26,21 @@ export class StackedBarCardComponent implements OnInit {
   @Input() chartData!: any;
   @Input() title!: string;
 
-  labels = new BehaviorSubject<any[]>([]);
-  xlabels = new BehaviorSubject<any[]>([]);
-  loading = new BehaviorSubject<boolean>(false);
-  data: BehaviorSubject<any[]> = new BehaviorSubject<any[]>([]);
+  httpClient: HttpClient = Inject(HttpClient);
 
-  constructor(private httpClient: HttpClient) {}
+  labels: any[] = [];
+  xlabels: any[] = [];
+  loading: boolean = false;
+  data: any[] = [];
+
+  constructor() {}
 
   ngOnInit() {
     this.loadData();
   }
 
   loadData() {
-    this.loading.next(true);
+    this.loading = true;
 
     combineLatest([
       new BehaviorSubject(this.chartData),
@@ -47,10 +52,10 @@ export class StackedBarCardComponent implements OnInit {
           return this.fetchData(cd, cf, pf);
         }),
         finalize(() => {
-          this.loading.next(false);
+          this.loading = false;
         })
       )
-      .subscribe((data) => this.data.next(data));
+      .subscribe((data) => this.data = data);
   }
 
   fetchData(chartData: any, cFilters: any[], pFilters: any[]) {
@@ -65,10 +70,8 @@ export class StackedBarCardComponent implements OnInit {
       })
       .pipe(
         tap(({ data }) => {
-          this.labels.next(data.labels.stackLookup);
-          this.xlabels.next(
-            data.labels.xAxisLookup.map((item: any) => item.label)
-          );
+          this.labels = data.labels.stackLookup;
+          this.xlabels = data.labels.xAxisLookup.map((item: any) => item.label);
         }),
         map(({ data }) => {
           const dataset = data.labels.stackLookup.map((val: any) => {

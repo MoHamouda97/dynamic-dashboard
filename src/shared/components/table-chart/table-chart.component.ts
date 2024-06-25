@@ -1,26 +1,31 @@
-import { HttpClient } from "@angular/common/http";
+import { HttpClient, HttpClientModule } from "@angular/common/http";
 import { Component, Inject, Input, OnInit } from "@angular/core";
 import { BehaviorSubject } from "rxjs";
 import { finalize } from "rxjs/operators";
 
 @Component({
-  selector: "db-table-chart",
+  selector: "app-dash-table-chart",
   standalone: true,
-  imports: [],
+  imports: [
+    HttpClientModule
+  ],
   templateUrl: "./table-chart.component.html",
-  styleUrls: ["./table-chart.component.scss"],
+  styleUrls: ["./table-chart.component.css"],
 })
 export class TableChartComponent implements OnInit {
   @Input() data!: any;
 
-  loading = new BehaviorSubject<boolean>(true);
-  columns = new BehaviorSubject<any[]>([]);
-  values = new BehaviorSubject<any[]>([]);
+  httpClient: HttpClient = Inject(HttpClient);
 
-  constructor(private httpClient: HttpClient) {}
+  loading: boolean = true;
+  columns: any[] = [];
+  values: any[] = [];
+
+  constructor() {}
 
   ngOnInit(): void {
-    this.loading.next(true);
+    this.loading =  true;
+
     this.httpClient
       .post<any>("dashboards/chart?type=table", {
         DashboardId: this.data.dbId,
@@ -33,18 +38,14 @@ export class TableChartComponent implements OnInit {
         },
       })
       .pipe(
-        finalize(() => {
-          this.loading.next(false);
-        })
+        finalize(() => (this.loading = false))
       )
       .subscribe(({ data }) => {
-        this.columns.next(
-          data.labels.map((label: any) => ({
-            header: label.label,
-            field: label.key,
-          }))
-        );
-        this.values.next(data.values);
+        this.columns = data.labels.map((label: any) => ({
+          header: label.label,
+          field: label.key,
+        }));
+        this.values = data.values;
       });
   }
 }

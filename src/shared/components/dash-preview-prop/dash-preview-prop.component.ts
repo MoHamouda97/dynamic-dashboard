@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { NumberPipe } from 'src/shared/pipes/number.pipe';
+import { DashUserAvatarComponent } from '../dash-user-avatar/dash-user-avatar.component';
 
 @Component({
   selector: 'app-dash-preview-prop',
@@ -12,6 +13,7 @@ import { NumberPipe } from 'src/shared/pipes/number.pipe';
     CommonModule,
     RouterModule,
     NumberPipe,
+    DashUserAvatarComponent
   ],
 })
 export class DashPreviewPropComponent implements OnChanges {

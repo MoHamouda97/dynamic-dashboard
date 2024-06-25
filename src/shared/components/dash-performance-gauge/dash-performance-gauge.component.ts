@@ -3,7 +3,6 @@ import {
   AfterViewInit,
   ElementRef,
   Input,
-  ChangeDetectionStrategy,
   ChangeDetectorRef,
   ViewChild,
   OnDestroy,
@@ -11,16 +10,15 @@ import {
 import { CommonModule } from "@angular/common";
 
 @Component({
-  selector: "app-performance-gauge",
-  standalone: true,
-  imports: [CommonModule],
-  templateUrl: "./performance-gauge.component.html",
-  styleUrls: ["./performance-gauge.component.scss"],
+  selector: 'app-dash-performance-gauge',
+  templateUrl: './dash-performance-gauge.component.html',
+  styleUrls: ['./dash-performance-gauge.component.css'],
   host: {
     // "(window:resize)": "updateRadius($event)",
     class: "w-full min-w-full",
   },
-  changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: true,
+  imports: [CommonModule],
 })
 export class DashPerformanceGaugeComponent implements AfterViewInit, OnDestroy {
   @ViewChild('hostElement', { static: true }) hostElement!: ElementRef;

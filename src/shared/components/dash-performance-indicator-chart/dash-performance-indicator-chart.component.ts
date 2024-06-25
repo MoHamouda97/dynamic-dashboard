@@ -1,14 +1,12 @@
+import { Component, ElementRef, Input, ViewChild, OnChanges } from "@angular/core";
 import { CommonModule } from "@angular/common";
-import { Component, ElementRef, Input, ViewChild, OnChanges, SimpleChanges } from "@angular/core";
 import * as Chart from "chart.js";
-
-
 @Component({
-  selector: "app-performance-indicator-chart",
+  selector: 'app-dash-performance-indicator-chart',
+  templateUrl: './dash-performance-indicator-chart.component.html',
+  styleUrls: ['./dash-performance-indicator-chart.component.css'],
   standalone: true,
   imports: [CommonModule],
-  templateUrl: "./performance-indicator-chart.component.html",
-  styleUrls: ["./performance-indicator-chart.component.scss"],
 })
 export class DashPerformanceIndicatorChartComponent implements OnChanges {
   @ViewChild("chartEl", { static: true })
@@ -35,4 +33,5 @@ export class DashPerformanceIndicatorChartComponent implements OnChanges {
       }
     }
   }
+
 }

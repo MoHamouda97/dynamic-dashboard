@@ -1,5 +1,5 @@
-import { HttpClient } from "@angular/common/http";
-import { Component, Input, OnInit } from "@angular/core";
+import { HttpClient, HttpClientModule } from "@angular/common/http";
+import { Component, Inject, Input, OnInit } from "@angular/core";
 import { ChartData } from "chart.js";
 import { Observable, combineLatest, finalize, map, switchMap, tap } from "rxjs";
 import { DashBarChartComponent } from "src/shared/components/dash-bar-chart/dash-bar-chart.component";
@@ -10,11 +10,12 @@ import { DashBarChartComponent } from "src/shared/components/dash-bar-chart/dash
   styleUrls: ['./bar-chart.component.css'],
   standalone: true,
   imports: [
-    DashBarChartComponent
+    DashBarChartComponent,
+    HttpClientModule
   ],
   host: {
     class: "block",
-  },
+  }
 })
 export class BarChartComponent implements OnInit {
   @Input() dbId!: number;
@@ -22,11 +23,13 @@ export class BarChartComponent implements OnInit {
   @Input() propertyFilters: any[] = [];
   @Input() chartData!: any;
 
+  httpClient: HttpClient = Inject(HttpClient);
+
   labels: any[] = [];
   loading: boolean = false;
   data: any[] = [];
 
-  constructor(private httpClient: HttpClient) {}
+  constructor() {}
 
   ngOnInit() {
     combineLatest([
@@ -35,7 +38,10 @@ export class BarChartComponent implements OnInit {
       this.propertyFilters$,
     ])
       .pipe(
-        switchMap(([cd, cf, pf]) => this.fetchData(cd, cf, pf)),
+        switchMap(([cd, cf, pf]) => {
+          console.log('cd, cf, pf]', [cd, cf, pf])
+          return this.fetchData(cd, cf, pf)
+        }),
         finalize(() => {
           this.loading = false;
         })

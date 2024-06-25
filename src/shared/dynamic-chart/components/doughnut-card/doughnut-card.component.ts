@@ -1,8 +1,8 @@
-import { Component,Input,  OnInit } from '@angular/core';
-import { DashDoughnutChartComponent } from 'src/shared/components/dash-doughnut-chart/dash-doughnut-chart.component';
-import { HttpClient } from "@angular/common/http";
+import { Component,Inject,Input,  OnInit } from '@angular/core';
+import { HttpClient, HttpClientModule } from "@angular/common/http";
 import { Observable, combineLatest, finalize, map, switchMap, tap } from "rxjs";
 import { ChartData } from 'chart.js';
+import { DashDoughnutChartComponent } from 'src/shared/components/dash-doughnut-chart/dash-doughnut-chart.component';
 
 @Component({
   selector: 'app-doughnut-card',
@@ -10,6 +10,7 @@ import { ChartData } from 'chart.js';
   styleUrls: ['./doughnut-card.component.css'],
   standalone: true,
   imports: [
+    HttpClientModule,
     DashDoughnutChartComponent
   ]
 })
@@ -19,11 +20,13 @@ export class DoughnutCardComponent implements OnInit {
   @Input() propertyFilters: any[] = [];
   @Input() chartData!: any;
 
+  httpClient: HttpClient = Inject(HttpClient);
+
   labels: any[] = [];
   loading: boolean = false;
   data: any[] = [];
 
-  constructor(private httpClient: HttpClient) {}
+  constructor() {}
 
   ngOnInit() {
     combineLatest([

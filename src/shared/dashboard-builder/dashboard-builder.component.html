@@ -1,0 +1,14 @@
+<div class="p-3">
+    <div class="grid">
+      <ng-container *ngFor="let chart of dashboard?.charts">
+        <app-dynamic-chart
+          [dbId]="dashboard?.id"
+          [title]="chart.title"
+          [type]="chart.type"
+          [chartData]="chart.chartData"
+          [withTabs]="chart.withTabs"
+          [size]="chart.size">
+        </app-dynamic-chart>
+      </ng-container>
+    </div>
+</div>

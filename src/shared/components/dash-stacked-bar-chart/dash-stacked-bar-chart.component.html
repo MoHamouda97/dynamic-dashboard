@@ -1,6 +1,6 @@
 <div #container class="flex flex-column w-full h-18rem align-items-center gap-3">
     <ng-container *ngIf="!loading; else loadingTemplate">
-      <ng-container *ngIf="!empty(); else emptyTemplate">
+      <ng-container *ngIf="!empty; else emptyTemplate">
         <div class="overflow-x-auto w-full flex-1">
           <div
             class="relative flex h-full justify-content-center align-items-center"

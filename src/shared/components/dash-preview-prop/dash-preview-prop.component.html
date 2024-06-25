@@ -2,12 +2,12 @@
     <ng-container [ngSwitch]="prop?.viewType">
       <!-- -----------------------User--------------------- -->
       <ng-container *ngSwitchCase="'User'">
-        <app-user-avatar
+        <app-dash-user-avatar
           [hideLabel]="hideLabel"
           [user]="prop?.value?.display"
           [label]="prop?.label"
           [customClass]="customClass">
-        </app-user-avatar>
+        </app-dash-user-avatar>
       </ng-container>
   
       <!-- -----------------------Percentage--------------------- -->
@@ -17,11 +17,11 @@
         </div>
         <div class="flex gap-2 align-items-center">
           <div class="flex-1">
-            <p-progressBar
+            <!-- <p-progressBar
               [value]="prop?.value?.value"
               [showValue]="false"
               [style]="{ height: '0.7rem' }">
-            </p-progressBar>
+            </p-progressBar> -->
           </div>
           <div class="font-semibold" [ngStyle]="{ color }">
             {{ prop?.value?.display || '_' }}
@@ -54,7 +54,7 @@
             <ng-container *ngIf="!hideLabel">
               <div class="font-semibold">{{ prop?.label }}</div>
             </ng-container>
-            <app-preview-status [status]="prop.value"></app-preview-status>
+            <!-- <app-preview-status [status]="prop.value"></app-preview-status> -->
           </div>
         </div>
       </ng-container>

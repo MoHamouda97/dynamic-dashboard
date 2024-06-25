@@ -3,7 +3,7 @@
       <div
         class="p-1 w-6 h-18rem"
         [style.border-inline-start]="!first ? '1px solid var(--surface-100)' : ''">
-        <db-doughnut-chart
+        <app-dash-doughnut-chart
           [dbId]="dbId"
           [title]="getLocalized(chart.title)"
           [data]="data[index]"
@@ -12,8 +12,8 @@
           [loading]="loading"
           [componentFilters]="componentFilters"
           [propertyFilters]="propertyFilters"
-          showHeader>
-        </db-doughnut-chart>
+          [showHeader]="true">
+        </app-dash-doughnut-chart>
       </div>
     </ng-container>
 </div>

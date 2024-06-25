@@ -10,19 +10,21 @@ import {
 import * as Chart from 'chart.js';
 import ChartDataLabels from "chartjs-plugin-datalabels";
 import { DashStatusLegendComponent } from "../dash-status-legend/dash-status-legend.component";
+import { CommonModule } from "@angular/common";
 
 @Component({
-  selector: "db-doughnut-chart",
-  templateUrl: "./doughnut-chart.component.html",
-  styleUrls: ["./doughnut-chart.component.scss"],
+  selector: 'app-dash-doughnut-chart',
+  templateUrl: './dash-doughnut-chart.component.html',
+  styleUrls: ['./dash-doughnut-chart.component.css'],
   host: {
     class: "w-full",
   },
   providers: [],
   standalone: true,
   imports: [
+    CommonModule,
     DashStatusLegendComponent,
-  ],
+  ]
 })
 export class DashDoughnutChartComponent implements OnInit {
   @ViewChild("chartEl") chartEl: any;
@@ -34,6 +36,7 @@ export class DashDoughnutChartComponent implements OnInit {
   @Input() showHeader: boolean = false;
   @Input() showLegends: boolean = true;
   @Input() hideTooltip: boolean = false;
+  @Input() empty: boolean = false;
   @Input() legends!: any[];
   @Input() title!: string;
   @Input() loading: boolean = false;

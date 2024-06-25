@@ -10,15 +10,15 @@ import { TableChartComponent } from "src/shared/components/table-chart/table-cha
 })
 export class TableModalComponent implements OnInit {
   data: any;
-  tableData = new BehaviorSubject<any>(undefined);
+  tableData: any = new BehaviorSubject<any>(undefined);
 
   ngOnInit(): void {
-    this.tableData.next({
+    this.tableData = {
       dbId: this.data.dbId,
       selection: this.data.action.selection,
       filters: this.data.filters,
       componentFilters: this.data.componentFilters,
       properties: this.data.action.action.properties,
-    });
+    };
   }
 }

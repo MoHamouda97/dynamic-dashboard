@@ -1,8 +1,9 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { DashDoughnutChartComponent } from 'src/shared/components/dash-doughnut-chart/dash-doughnut-chart.component';
-import { HttpClient } from "@angular/common/http";
+import { Component, Inject, Input, OnInit } from '@angular/core';
+import { HttpClient, HttpClientModule } from "@angular/common/http";
 import { Observable, forkJoin, of } from "rxjs";
 import { catchError, finalize } from "rxjs/operators";
+import { DashDoughnutChartComponent } from 'src/shared/components/dash-doughnut-chart/dash-doughnut-chart.component';
+import { CommonModule } from '@angular/common';
 //import { TranslateService } from "@ngx-translate/core";
 
 @Component({
@@ -11,6 +12,8 @@ import { catchError, finalize } from "rxjs/operators";
   styleUrls: ['./multi-doughnut-card.component.css'],
   standalone: true,
   imports: [
+    CommonModule,
+    HttpClientModule,
     DashDoughnutChartComponent
   ]
 })
@@ -21,11 +24,13 @@ export class MultiDoughnutCardComponent implements OnInit {
   @Input() title?: any;
   @Input() chartData: any[] = [];
 
+  httpClient: HttpClient = Inject(HttpClient);
+
   labels: any[] = [];
   data: any[] = [];
   loading: boolean = false;
   
-  constructor(private httpClient: HttpClient) {}
+  constructor() {}
 
   ngOnInit(): void {
     this.loading = true;

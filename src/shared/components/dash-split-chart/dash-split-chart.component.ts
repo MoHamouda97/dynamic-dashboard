@@ -1,17 +1,19 @@
-import { DecimalPipe, NgTemplateOutlet } from "@angular/common";
+import { CommonModule, DecimalPipe, NgTemplateOutlet } from "@angular/common";
 import { Component, Input, OnInit } from "@angular/core";
-//import { TranslateModule } from "@ngx-translate/core";
 
 @Component({
-  selector: "db-split-chart",
+  selector: 'app-dash-split-chart',
+  templateUrl: './dash-split-chart.component.html',
+  styleUrls: ['./dash-split-chart.component.css'],
   standalone: true,
-  imports: [DecimalPipe, NgTemplateOutlet],
-  templateUrl: "./split-chart.component.html",
-  styleUrls: ["./split-chart.component.scss"],
+  imports: [
+    CommonModule,
+    DecimalPipe, 
+    NgTemplateOutlet
+  ],
   host: {
     class: "w-full",
   },
-  providers: [],
 })
 export class DashSplitChartComponent implements OnInit {
   @Input() dbId!: number;

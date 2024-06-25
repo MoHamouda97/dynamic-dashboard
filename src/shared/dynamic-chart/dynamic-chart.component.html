@@ -1,0 +1,62 @@
+<div class="card p-0">
+    <ng-container *ngIf="title">
+      <div class="flex justify-content-between align-items-center w-full p-3 border-bottom-1 border-100">
+        <div class="text-xl font-semibold" style="line-height: 32px">
+          {{ title.ar }}
+        </div>
+      </div>
+    </ng-container>
+
+    <ng-container [ngSwitch]="type">
+      <div *ngSwitchCase="'BarChart'" class="p-3 h-20rem">
+        <app-bar-chart
+          [dbId]="dbId"
+          [componentFilters]="componentFilters"
+          [propertyFilters]="propertyFilters"
+          [chartData]="(withTabs) ? (chartData)?.[tab] : chartData"></app-bar-chart>
+      </div>
+
+      <div *ngSwitchCase="'PropertiesBarChar'" class="p-3 h-20rem">
+        <app-properties-bar-card
+          [dbId]="dbId"
+          [componentFilters]="componentFilters"
+          [propertyFilters]="propertyFilters"
+          [chartData]="(withTabs) ? (chartData)?.[tab] : chartData"></app-properties-bar-card>
+      </div>
+
+      <div *ngSwitchCase="'StackedBarChart'" class="p-3 h-20rem">
+        <app-stacked-bar-card
+          [dbId]="dbId"
+          [componentFilters]="componentFilters"
+          [propertyFilters]="propertyFilters"
+          [chartData]="chartData"
+          [title]="title"></app-stacked-bar-card>
+      </div>
+
+      <div *ngSwitchCase="'ComponentStackedBarChart'" class="p-3 h-20rem">
+        <app-stacked-bar-card
+          [dbId]="dbId"
+          [componentFilters]="componentFilters"
+          [propertyFilters]="propertyFilters"
+          [chartData]="chartData"
+          [title]="title"></app-stacked-bar-card>
+      </div>
+
+      <div *ngSwitchCase="'DoughnutChart'" class="p-3 h-20rem">
+        <app-doughnut-card
+          [dbId]="dbId"
+          [componentFilters]="componentFilters"
+          [propertyFilters]="propertyFilters"
+          [chartData]="chartData"></app-doughnut-card>
+      </div>
+
+      <div *ngSwitchCase="'MultiDoughnutChart'" class="p-3 h-20rem">
+        <app-multi-doughnut-card
+          [dbId]="dbId"
+          [componentFilters]="componentFilters"
+          [propertyFilters]="propertyFilters"
+          [chartData]="chartData"></app-multi-doughnut-card>
+      </div>
+    </ng-container>
+</div>
+  

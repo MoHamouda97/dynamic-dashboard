@@ -4,6 +4,7 @@ import ChartDataLabels from "chartjs-plugin-datalabels";
 import { DashStatusLegendComponent } from "../dash-status-legend/dash-status-legend.component";
 import * as Chart from "chart.js";
 import { strToArray } from "src/shared/utils";
+import { CommonModule } from "@angular/common";
 
 const backgroundBar: any = {
   id: "backgroundBar",
@@ -64,6 +65,7 @@ const backgroundBar: any = {
   styleUrls: ['./dash-stacked-bar-chart.component.css'],
   standalone: true,
   imports: [
+    CommonModule,
     DashStatusLegendComponent
   ],
 })
@@ -74,6 +76,7 @@ export class DashStackedBarChartComponent implements OnInit {
   @Input() dbId!: number;
   @Input() data: any[] = [];
   @Input() action: any;
+  @Input() containerWidth: any;
   @Input() labels: any[] = [];
   @Input() xlabels: any[] = [];
   @Input() showTotal: boolean = true;
@@ -82,11 +85,12 @@ export class DashStackedBarChartComponent implements OnInit {
   @Input() formatNumbers: boolean = false;
   @Input() title!: string;
   @Input() loading: boolean = false;
+  @Input() empty: boolean = false;
   @Input() componentFilters: any[] = [];
   @Input() propertyFilters: any[] = [];
+  @Input() chartData: any;
 
   chart: any;
-  chartData: any;
   options: any;
 
   constructor() {}
@@ -105,7 +109,8 @@ export class DashStackedBarChartComponent implements OnInit {
     }
   }
 
-  initializeChart() {
+  initializeChart() {   
+    console.log('data data', this.data, this.chartData) 
     this.chartData = {
       labels: this.xlabels,
       datasets: this.data.map(item => ({
